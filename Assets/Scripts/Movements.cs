@@ -8,29 +8,39 @@ public class Movements : MonoBehaviour
     [SerializeField] InputAction rotation;
     [SerializeField] InputAction restart;
 
+    //Object Variables
     Rigidbody rb;
+    AudioSource audioSource;
 
     //Assessable Variables
     [SerializeField] float thrusterSpeed = 100f;
     [SerializeField] float rotationSpeed = 5f;
 
 
-    //
+    // Start is called before the first frame update
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
+
+    // This function is called when the object is created
     private void OnEnable()
     {
+        //Give the key enable to the Input Action
         thruster.Enable();
         rotation.Enable();
         restart.Enable();
+      
     }
 
     private void FixedUpdate()
     {
+        // This function is called Thruster and Sound Effect
         ProcessThrust();
+        // This function is called for Rotation
         ProcessRotation();
+        // This function is called for Restart Position
         RestartPosition();
     }
 
@@ -38,11 +48,24 @@ public class Movements : MonoBehaviour
     {
         if (thruster.IsPressed())
         {
+            //if thruster is pressed, we add a force to the object in the direction it is facing
             rb.AddRelativeForce(Vector3.up * thrusterSpeed * Time.fixedDeltaTime);
-           
+
+            //Play Sound
+            if (thruster.IsInProgress() && !audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
         }
+        else
+        {
+            //Stop Sound
+            audioSource.Stop();
+        }
+
     }
 
+    //Rotation
     private void ProcessRotation()
     {
         float rotationValue = rotation.ReadValue<float>();
@@ -60,11 +83,12 @@ public class Movements : MonoBehaviour
         }
     }
 
+    //Apply Rotation
     private void ApplyRotation(float rotationValue)
     {
-        rb.freezeRotation = true;
+        rb.freezeRotation = true; //we stop the physics system from rotating the object
         transform.Rotate(Vector3.forward * rotationValue * Time.fixedDeltaTime);
-        rb.freezeRotation = false;
+        rb.freezeRotation = false; // resume physics system
     }
 
     //Restart Position
