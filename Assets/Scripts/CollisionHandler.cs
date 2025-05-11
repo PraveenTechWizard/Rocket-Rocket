@@ -9,12 +9,14 @@ public class CollisionHandler : MonoBehaviour
         switch (collisionObject.gameObject.tag)
         {
             case "StartingPoint":
-                Debug.Log("Start the Rocket");
+            
                 break;
             case "EndingPoint": // This is the Ending Point
+             
                 MoveON(); // Disable the Active on Object and Move to Next Level
                 break;
             default: // This is the Obstacle
+                
                 PlayerReload(); // Disable the Active on Object and Reload the Same Level
                 break;
         } 
@@ -24,7 +26,7 @@ public class CollisionHandler : MonoBehaviour
     private void MoveON()
     {
         GetComponent<Movements>().enabled = false; // Disable the Movements script
-        Invoke("NextLevel", 1f); // Delay for 1 second before calling NextLevel
+        Invoke("NextLevel", 4f); // Delay for 1 second before calling NextLevel
     }
 
     //This function is called when the object is collided with Obstacle Player Reload
@@ -41,6 +43,9 @@ public class CollisionHandler : MonoBehaviour
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextScene = nextSceneIndex + 1;
 
+        Debug.Log("Current Scene Index: " + nextSceneIndex); // Log the current scene index for debugging
+        Debug.Log("Next Scene Index: " + nextScene); // Log the next scene index for debugging
+        Debug.Log("Total Scenes in Build Settings: " + SceneManager.sceneCountInBuildSettings); // Log the total number of scenes in build settings
         // Check if the next scene index is within the valid range
         if (nextScene >= SceneManager.sceneCountInBuildSettings)
         {

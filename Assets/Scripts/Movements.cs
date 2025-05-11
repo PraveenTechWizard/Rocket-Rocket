@@ -4,9 +4,12 @@ using UnityEngine.InputSystem;
 public class Movements : MonoBehaviour
 {
     //Assign Variable
-    [SerializeField] InputAction thruster;
+    [SerializeField]  InputAction thruster;
     [SerializeField] InputAction rotation;
     [SerializeField] InputAction restart;
+
+    //Audio Clips variables
+    [SerializeField] AudioClip thrustSound;
 
     //Object Variables
     Rigidbody rb;
@@ -54,7 +57,7 @@ public class Movements : MonoBehaviour
             //Play Sound
             if (thruster.IsInProgress() && !audioSource.isPlaying)
             {
-                audioSource.Play();
+                audioSource.PlayOneShot(thrustSound);
             }
         }
         else

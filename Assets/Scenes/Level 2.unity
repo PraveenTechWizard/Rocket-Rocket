@@ -934,6 +934,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c59659e925c5334f96ebb5390e10d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1576840240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034666061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f321cf2c0ba4564b9bb13c6baf920fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionSound: {fileID: 8300000, guid: f4023ffe7ae743b4992180229e7cd5bd, type: 3}
+  successSound: {fileID: 8300000, guid: ae88fefaa28db9749bac1e0bf5479852, type: 3}
 --- !u!1001 &1900626209
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1148,6 +1162,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1917496138649022944, guid: 206eafbdad359b54487884bca50d3dd4, type: 3}
+      propertyPath: thrustSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b7ce2ad45a5690441969d6f3923c8e53, type: 3}
     - target: {fileID: 1917496138649022944, guid: 206eafbdad359b54487884bca50d3dd4, type: 3}
       propertyPath: rotationSpeed
       value: 100
@@ -1376,6 +1394,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6227600172662278849, guid: 206eafbdad359b54487884bca50d3dd4, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227600172662278849, guid: 206eafbdad359b54487884bca50d3dd4, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6511657391725905202, guid: 206eafbdad359b54487884bca50d3dd4, type: 3}
       propertyPath: m_Drag
       value: 1
@@ -1402,6 +1428,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5201845415019189505, guid: 206eafbdad359b54487884bca50d3dd4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1576840239}
+    - targetCorrespondingSourceObject: {fileID: 5201845415019189505, guid: 206eafbdad359b54487884bca50d3dd4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1576840240}
   m_SourcePrefab: {fileID: 100100000, guid: 206eafbdad359b54487884bca50d3dd4, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
