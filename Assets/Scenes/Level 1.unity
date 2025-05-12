@@ -788,10 +788,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.18030395
-  m_Height: 0.96757185
+  m_Radius: 0.22638342
+  m_Height: 1.019761
   m_Direction: 1
-  m_Center: {x: 0.10168338, y: -0.00000034562737, z: 0.00000041120765}
+  m_Center: {x: 0.10168338, y: 0.008222783, z: -0.004630684}
 --- !u!4 &1576840234 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5891624055856235449, guid: 206eafbdad359b54487884bca50d3dd4, type: 3}
@@ -811,6 +811,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionSound: {fileID: 8300000, guid: f4023ffe7ae743b4992180229e7cd5bd, type: 3}
   successSound: {fileID: 8300000, guid: ae88fefaa28db9749bac1e0bf5479852, type: 3}
+  isPlayable: 1
 --- !u!1001 &1900626209
 PrefabInstance:
   m_ObjectHideFlags: 0

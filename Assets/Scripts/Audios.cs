@@ -6,6 +6,9 @@ public class Audios : MonoBehaviour
     //Assign Variable(for get audio clip)
     [SerializeField] AudioClip explosionSound, successSound ;
 
+    //Boolean Variables
+    public bool isPlayable = true;
+
     //Object Variables
     AudioSource audioSource;
 
@@ -20,7 +23,11 @@ public class Audios : MonoBehaviour
     //
     private void OnCollisionEnter(Collision collisionObject)
     {
-        switch(collisionObject.gameObject.tag)
+        //Check if the object is non-controllable
+        if (!isPlayable) { return; }
+
+        //Check if the object is collided with the Starting Point, Ending Point, or Obstacle
+        switch (collisionObject.gameObject.tag)
         {
             //Play Starting Sound Effect
             case "StartingPoint":
@@ -30,13 +37,15 @@ public class Audios : MonoBehaviour
             //Play Wining Sound Effect
             case "EndingPoint":
                 //Play Wind Sound Effect
+                isPlayable = false; // Set isPlayable to false to prevent further collisions
                 audioSource.PlayOneShot(successSound);
                 break;
           
             //Play Explosion Sound Effect
             default:
                 //Play Explosion Sound Effect
-                audioSource.PlayOneShot(explosionSound);
+                isPlayable = false; // Set isPlayable to false to prevent further collisions
+                audioSource.PlayOneShot(explosionSound, 0.2f);
                 break;
         }
     }

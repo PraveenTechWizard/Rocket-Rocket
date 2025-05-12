@@ -11,9 +11,12 @@ public class Movements : MonoBehaviour
     //Audio Clips variables
     [SerializeField] AudioClip thrustSound;
 
+    //Script Variables
+    Audios boolValue;
+
     //Object Variables
     Rigidbody rb;
-    AudioSource audioSource;
+    public AudioSource audioSource;
 
     //Assessable Variables
     [SerializeField] float thrusterSpeed = 100f;
@@ -25,6 +28,7 @@ public class Movements : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        boolValue = GetComponent<Audios>();
     }
 
     // This function is called when the object is created
@@ -49,10 +53,21 @@ public class Movements : MonoBehaviour
 
     private void ProcessThrust()
     {
+       
+
+        //Check the player press the thruster button (Up and sound effects)
         if (thruster.IsPressed())
         {
             //if thruster is pressed, we add a force to the object in the direction it is facing
             rb.AddRelativeForce(Vector3.up * thrusterSpeed * Time.fixedDeltaTime);
+
+            //Check if the object is non-controllable for Stop thruster sound
+            //if (!boolValue.isPlayable)
+            //{
+            //    Debug.Log("Working audio Stop");
+            //    //Debug.Log("Is Playable: " + !boolValue.isPlayable);
+            //    audioSource.Stop();
+            //}
 
             //Play Sound
             if (thruster.IsInProgress() && !audioSource.isPlaying)
@@ -102,5 +117,16 @@ public class Movements : MonoBehaviour
             transform.position = new Vector3 (-5.178648f, 0.9587119f, -6.441f);
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
+    }
+
+    //Stop the Audio form Collision Script
+    public void DisableAudio()
+    {
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+            //Debug.Log("Audio Stopped");
+        }
+
     }
 }

@@ -4,27 +4,30 @@ using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
+
     private void OnCollisionEnter(Collision collisionObject)
     {
-        switch (collisionObject.gameObject.tag)
-        {
-            case "StartingPoint":
+
+            //Check if the object is collided with the Starting Point, Ending Point, or Obstacle
+            switch (collisionObject.gameObject.tag)
+            {
+                case "StartingPoint":
+                    break;
+                case "EndingPoint": // This is the Ending Point
+
+                    MoveON(); // Disable the Active on Object and Move to Next Level
+                    break;
+                default: // This is the Obstacle
+
+                    PlayerReload(); // Disable the Active on Object and Reload the Same Level
+                    break;
+            }
             
-                break;
-            case "EndingPoint": // This is the Ending Point
-             
-                MoveON(); // Disable the Active on Object and Move to Next Level
-                break;
-            default: // This is the Obstacle
-                
-                PlayerReload(); // Disable the Active on Object and Reload the Same Level
-                break;
-        } 
     }
 
     //This function is called when the object is collided with the Ending Point Player will go to Next Level
     private void MoveON()
-    {
+    {    
         GetComponent<Movements>().enabled = false; // Disable the Movements script
         Invoke("NextLevel", 4f); // Delay for 1 second before calling NextLevel
     }
@@ -33,6 +36,7 @@ public class CollisionHandler : MonoBehaviour
     private void PlayerReload()
     {
         //Disable the Player
+        GetComponent<Movements>().DisableAudio(); // Stop the audio source from Movement script (thruster)
         GetComponent<Movements>().enabled = false; // Disable the Movements script
         Invoke("ReloadLevel", 1f); // Delay for 1 second before calling ReloadLevel
     }
