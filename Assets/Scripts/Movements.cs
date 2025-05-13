@@ -12,7 +12,7 @@ public class Movements : MonoBehaviour
     [SerializeField] AudioClip thrustSound;
 
     //Script Variables
-    Audios boolValue;
+    //Audios boolValue;
 
     //Object Variables
     Rigidbody rb;
@@ -28,7 +28,7 @@ public class Movements : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
-        boolValue = GetComponent<Audios>();
+        //boolValue = GetComponent<Audios>();
     }
 
     // This function is called when the object is created
@@ -60,14 +60,6 @@ public class Movements : MonoBehaviour
         {
             //if thruster is pressed, we add a force to the object in the direction it is facing
             rb.AddRelativeForce(Vector3.up * thrusterSpeed * Time.fixedDeltaTime);
-
-            //Check if the object is non-controllable for Stop thruster sound
-            //if (!boolValue.isPlayable)
-            //{
-            //    Debug.Log("Working audio Stop");
-            //    //Debug.Log("Is Playable: " + !boolValue.isPlayable);
-            //    audioSource.Stop();
-            //}
 
             //Play Sound
             if (thruster.IsInProgress() && !audioSource.isPlaying)

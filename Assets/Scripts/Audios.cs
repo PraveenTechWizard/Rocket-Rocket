@@ -11,13 +11,10 @@ public class Audios : MonoBehaviour
 
     //Object Variables
     AudioSource audioSource;
-
-
     private void Start()
     {
         //Get the Audio Source
         audioSource = GetComponent<AudioSource>();
-        
     }
 
     //
@@ -37,15 +34,15 @@ public class Audios : MonoBehaviour
             //Play Wining Sound Effect
             case "EndingPoint":
                 //Play Wind Sound Effect
-                isPlayable = false; // Set isPlayable to false to prevent further collisions
                 audioSource.PlayOneShot(successSound);
+                isPlayable = false; // Set isPlayable to false to prevent further collisions
                 break;
           
             //Play Explosion Sound Effect
             default:
                 //Play Explosion Sound Effect
+                audioSource.PlayOneShot(explosionSound);
                 isPlayable = false; // Set isPlayable to false to prevent further collisions
-                audioSource.PlayOneShot(explosionSound, 0.2f);
                 break;
         }
     }
