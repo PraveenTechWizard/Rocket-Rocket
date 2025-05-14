@@ -11,8 +11,10 @@ public class Movements : MonoBehaviour
     //Audio Clips variables
     [SerializeField] AudioClip thrustSound;
 
-    //Script Variables
-    //Audios boolValue;
+    //Particle variables
+    [SerializeField] ParticleSystem thrustParticle;
+    [SerializeField] ParticleSystem leftThursterParticle;
+    [SerializeField] ParticleSystem rightThursterParticle;
 
     //Object Variables
     Rigidbody rb;
@@ -28,6 +30,14 @@ public class Movements : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+       ParticleSystem thrusterParticle = Instantiate(thrustParticle, transform);
+       ParticleSystem rightSideParticle = Instantiate(rightThursterParticle, transform);
+       ParticleSystem leftSideParticle = Instantiate(leftThursterParticle, transform);
+
+        //
+        thrusterParticle.Stop();
+        rightSideParticle.Stop();
+        leftSideParticle.Stop();
         //boolValue = GetComponent<Audios>();
     }
 
@@ -53,12 +63,12 @@ public class Movements : MonoBehaviour
 
     private void ProcessThrust()
     {
-       
 
         //Check the player press the thruster button (Up and sound effects)
         if (thruster.IsPressed())
         {
             //if thruster is pressed, we add a force to the object in the direction it is facing
+            
             rb.AddRelativeForce(Vector3.up * thrusterSpeed * Time.fixedDeltaTime);
 
             //Play Sound
@@ -66,11 +76,25 @@ public class Movements : MonoBehaviour
             {
                 audioSource.PlayOneShot(thrustSound);
             }
+
+            //Play Particle
+            if(!thrustParticle.isPlaying)
+            {
+                thrustParticle.Play();
+            }
         }
         else
         {
             //Stop Sound
+            
             audioSource.Stop();
+
+            //Stop Particle
+            if (thrustParticle.isPlaying)
+            {
+                thrustParticle.Stop();
+            }
+
         }
 
     }
@@ -84,12 +108,39 @@ public class Movements : MonoBehaviour
         if (rotationValue > 0)
         {
             ApplyRotation(-rotationSpeed);
-
+            //
+            if(!rightThursterParticle.isPlaying)
+            {
+                rightThursterParticle.Play();
+            }
         }
-        else if (rotationValue < 0)
+        //
+        else
+        {
+            if (rightThursterParticle.isPlaying)
+            {
+                rightThursterParticle.Stop();
+            }
+        }
+
+        if (rotationValue < 0)
         {
             ApplyRotation(rotationSpeed);
-            
+
+            //
+            if (!leftThursterParticle.isPlaying)
+            {
+                leftThursterParticle.Play();
+            }
+
+        }
+        //
+        else
+        {
+            if (leftThursterParticle.isPlaying)
+            {
+                leftThursterParticle.Stop();
+            }
         }
     }
 
