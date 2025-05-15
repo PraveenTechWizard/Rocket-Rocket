@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
@@ -8,19 +9,26 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] ParticleSystem successParticle;
     [SerializeField] ParticleSystem crashParticle;
 
+    //
+    [SerializeField] InputAction nextLevel;
+
     //Checking if object hit or not 
     //Boolean Variables
     bool isNotHiting = true;
 
     //Variable for particle object
     //ParticleSystem particleObject;
+    private void OnEnable()
+    {
+        //Enable the Input Action
+        nextLevel.Enable();
+    }
 
-    // Start is called before the first frame update
-    //void Start()
-    //{
-    //    //Get the Particle System component attached to the GameObject
-    //    particleObject = GetComponent<ParticleSystem>();
-    //}
+    private void FixedUpdate()
+    {
+        // This function is called for Restart Position
+        ProcessNextLevel();
+    }
     private void OnCollisionEnter(Collision collisionObject)
     {
         //Condition for unwanted collision
@@ -97,5 +105,19 @@ public class CollisionHandler : MonoBehaviour
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
     }
-   
+
+    //Go to the next level when press L button
+    void ProcessNextLevel()
+    {
+        if (nextLevel.IsPressed())
+        {
+           Debug.Log("Next Level is Working"); // Debug log for testing
+            NextLevel(); // Call the NextLevel function
+        }
+        else
+        {
+            Debug.Log("Next Level is Not Working"); // Debug log for testing
+        }
+    }
+
 }

@@ -936,6 +936,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   successParticle: {fileID: 4357512826411778423}
   crashParticle: {fileID: 4357512826411778422}
+  nextLevel:
+    m_Name: Next Level
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: cf3c219e-e877-4f7f-b77f-47f8205afe30
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 5540755e-3ce1-4027-bab5-2bbca47a9394
+      m_Path: <Keyboard>/l
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Next Level
+      m_Flags: 0
+    m_Flags: 0
 --- !u!114 &1576840240
 MonoBehaviour:
   m_ObjectHideFlags: 0

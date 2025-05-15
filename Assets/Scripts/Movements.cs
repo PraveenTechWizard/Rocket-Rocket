@@ -67,21 +67,7 @@ public class Movements : MonoBehaviour
         //Check the player press the thruster button (Up and sound effects)
         if (thruster.IsPressed())
         {
-            //if thruster is pressed, we add a force to the object in the direction it is facing
-            
-            rb.AddRelativeForce(Vector3.up * thrusterSpeed * Time.fixedDeltaTime);
-
-            //Play Sound
-            if (thruster.IsInProgress() && !audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(thrustSound);
-            }
-
-            //Play Particle
-            if(!thrustParticle.isPlaying)
-            {
-                thrustParticle.Play();
-            }
+            ThrusterActions();
         }
         else
         {
@@ -97,6 +83,25 @@ public class Movements : MonoBehaviour
 
         }
 
+    }
+
+    private void ThrusterActions()
+    {
+        //if thruster is pressed, we add a force to the object in the direction it is facing
+
+        rb.AddRelativeForce(Vector3.up * thrusterSpeed * Time.fixedDeltaTime);
+
+        //Play Sound
+        if (thruster.IsInProgress() && !audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(thrustSound);
+        }
+
+        //Play Particle
+        if (!thrustParticle.isPlaying)
+        {
+            thrustParticle.Play();
+        }
     }
 
     //Rotation
